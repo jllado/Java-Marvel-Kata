@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.*;
 
 public class MarvelComicJSONWSTest {
-    private MarvelComicJSONWS jsonWS = new MarvelComicJSONWS();
+    private MarvelComicJsonWS jsonWS = new MarvelComicJsonWS();
 
     @Test
     public void get_data() throws Exception {

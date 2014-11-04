@@ -5,7 +5,7 @@ package jllado.scbcn14.kata.marvel;
  */
 public class MarvelComicsFactory {
     public static MarvelComicsService createMarvelComicsService() {
-        MarvelComicsWS marvelComicsWS = new MarvelComicJSONWS();
+        MarvelComicsWS marvelComicsWS = new MarvelComicJsonWS();
         MarvelRepository marvelRepository = new MarvelComicsJsonRepository(marvelComicsWS);
         MarvelComicsService service = new MarvelComicsService(marvelRepository);
         return service;
