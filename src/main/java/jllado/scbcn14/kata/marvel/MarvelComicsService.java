@@ -1,20 +1,15 @@
 package jllado.scbcn14.kata.marvel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MarvelComicsService {
-    private final MarvelRepository marvelRepository;
+    private final ComicRepository comicRepository;
 
-    public MarvelComicsService(MarvelRepository marvelRepository) {
-        this.marvelRepository = marvelRepository;
+    public MarvelComicsService(ComicRepository comicRepository) {
+        this.comicRepository = comicRepository;
     }
 
-    public List<Comic> getComicsByNextWeek() {
-        List<Comic> comicsNextWeek = new ArrayList<>();
-        for (Comic comic : marvelRepository.getComicsByNextWeek()) {
-            comicsNextWeek.add(comic);
-        }
-        return comicsNextWeek;
+    public List<Comic> getComicsNextWeek() {
+        return comicRepository.getComicsNextWeek();
     }
 }

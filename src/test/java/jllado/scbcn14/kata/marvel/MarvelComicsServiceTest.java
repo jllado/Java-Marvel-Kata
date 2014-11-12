@@ -23,20 +23,20 @@ public class MarvelComicsServiceTest {
 
     private MarvelComicsService marvelService;
     @Mock
-    private MarvelRepository marvelRepository;
+    private ComicRepository comicRepository;
     private static final Comic comic1 = new Comic("Titulo2", "Thumbnail2", new BigDecimal("20"), new DateTime(2014, 11, 4, 12, 0, 0, 0));
     private static final Comic comic2 = new Comic("Titulo1", "Thumbnail1", new BigDecimal("20"), new DateTime(2014, 11, 1, 12, 0, 0, 0));
 
     @Before
     public void setUp() throws Exception {
-        marvelService = new MarvelComicsService(marvelRepository);
+        marvelService = new MarvelComicsService(comicRepository);
     }
 
     @Test
     public void get_comics_by_week() throws Exception {
-        when(marvelRepository.getComicsByNextWeek()).thenReturn(createComics());
+        when(comicRepository.getComicsNextWeek()).thenReturn(createComics());
 
-        List<Comic> comics = marvelService.getComicsByNextWeek();
+        List<Comic> comics = marvelService.getComicsNextWeek();
 
         assertThat(comics.size(), greaterThan(0));
         assertThat(comics, containsInAnyOrder(comic1, comic2));

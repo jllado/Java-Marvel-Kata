@@ -20,8 +20,8 @@ public class MarvelMD5GeneratorTest {
     @Test
     public void generate_MarvelMD5Info() throws Exception {
         int ts = 987;
-        String privateKey = marvelKataProperties.getString("marve.privatekey");
-        String publicKey = marvelKataProperties.getString("marve.publickey");
+        String privateKey = marvelKataProperties.getString("marvel.privatekey");
+        String publicKey = marvelKataProperties.getString("marvel.publickey");
         MarvelMD5Info marvelMD5Info = new MarvelMD5Info(ts, privateKey, publicKey);
         assertThat(marvelMD5Info.generateHash(), is("feb31cfde2a16643a425c53d183aee16"));
     }

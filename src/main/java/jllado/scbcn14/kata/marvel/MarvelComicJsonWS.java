@@ -11,24 +11,25 @@ import java.security.NoSuchAlgorithmException;
  */
 public class MarvelComicJsonWS implements MarvelComicsWS {
 
-    private static final String BASEURL_COMICS_NEXTWEEK = "http://gateway.marvel.com/v1/public/comics?dateDescriptor=nextWeek";
+    private final String url;
     private final MarvelMD5Info marvelMD5Info;
 
-    public MarvelComicJsonWS(MarvelMD5Info marvelMD5Info) {
+    public MarvelComicJsonWS(String url, MarvelMD5Info marvelMD5Info) {
+        this.url = url;
         this.marvelMD5Info = marvelMD5Info;
     }
 
     @Override
-    public String getComicsByNextWeek() throws IOException, NoSuchAlgorithmException {
+    public String getComicsNextWeek() throws IOException, NoSuchAlgorithmException {
         return IOUtils.toString(new URL(generateUrl()), "UTF-8");
     }
 
     private String generateUrl() throws NoSuchAlgorithmException {
-        final StringBuilder url = new StringBuilder();
-        url.append(BASEURL_COMICS_NEXTWEEK)
+        final StringBuilder urlWithKeyInfo = new StringBuilder();
+        urlWithKeyInfo.append(this.url)
                 .append("&ts=").append(marvelMD5Info.getTs())
                 .append("&apikey=").append(marvelMD5Info.getPublicKey())
                 .append("&hash=").append(marvelMD5Info.generateHash());
-        return url.toString();
+        return urlWithKeyInfo.toString();
     }
 }

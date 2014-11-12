@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 public class MarvelComicsJsonRepositoryTest {
 
 
-    private MarvelRepository marvelRepository;
+    private ComicRepository marvelRepository;
     @Mock
     private MarvelComicsWS marvelComicsWS;
 
@@ -28,12 +28,12 @@ public class MarvelComicsJsonRepositoryTest {
     public void setUp() throws Exception {
         marvelRepository = new MarvelComicsJsonRepository(marvelComicsWS);
         String jsonMarvelComics = IOUtils.toString(this.getClass().getResourceAsStream("/marvelcomics.json"), "UTF-8");
-        when(marvelComicsWS.getComicsByNextWeek()).thenReturn(jsonMarvelComics);
+        when(marvelComicsWS.getComicsNextWeek()).thenReturn(jsonMarvelComics);
     }
 
     @Test
     public void get_all_comics() throws Exception {
-        List<Comic> comics = marvelRepository.getComicsByNextWeek();
+        List<Comic> comics = marvelRepository.getComicsNextWeek();
 
         assertThat(comics.size(), greaterThan(0));
         assertThat(

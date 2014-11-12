@@ -6,13 +6,17 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.ResourceBundle;
+
 import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MarvelComicJsonWSTest {
+
     private MarvelComicJsonWS jsonWS;
+    private ResourceBundle properties;
 
     @Mock
     private MarvelMD5Info marvelMD5Info;
@@ -21,13 +25,14 @@ public class MarvelComicJsonWSTest {
         when(marvelMD5Info.getTs()).thenReturn(987);
         when(marvelMD5Info.getPublicKey()).thenReturn("97f295907072a970c5df30d73d1f3816");
         when(marvelMD5Info.generateHash()).thenReturn("abfa1c1d42a73a5eab042242335d805d");
-        jsonWS = new MarvelComicJsonWS(marvelMD5Info);
+        properties = ResourceBundle.getBundle("marvelkata");
+        jsonWS = new MarvelComicJsonWS(properties.getString("marvel.url"), marvelMD5Info);
 
     }
 
     @Test
     public void get_data() throws Exception {
-        assertThat(jsonWS.getComicsByNextWeek().length(), greaterThan(0));
+        assertThat(jsonWS.getComicsNextWeek().length(), greaterThan(0));
 
     }
 }

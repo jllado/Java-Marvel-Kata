@@ -8,5 +8,5 @@ import java.security.NoSuchAlgorithmException;
  * Created by jllado on 26/10/14.
  */
 public interface MarvelComicsWS {
-    String getComicsByNextWeek() throws IOException, NoSuchAlgorithmException;
+    String getComicsNextWeek() throws IOException, NoSuchAlgorithmException;
 }
